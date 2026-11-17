@@ -11,6 +11,10 @@ import { HeroBackdrop } from "@/components/hero-backdrop";
 import { SiteHeader } from "@/components/site-header";
 import { CtaFooter } from "@/components/cta-footer";
 import { ProcessSteps, type Step } from "@/components/process-steps";
+import searchIcon from "kubai-icons-static/svg/search.svg";
+import penToolIcon from "kubai-icons-static/svg/pen-tool.svg";
+import codeIcon from "kubai-icons-static/svg/code.svg";
+import externalLinkIcon from "kubai-icons-static/svg/external-link.svg";
 import { ServicesFan, type Service } from "@/components/services-fan";
 
 const services: Service[] = [
@@ -50,10 +54,10 @@ const stats = [
 ];
 
 const process: Step[] = [
-  { step: "Discover", body: "We get to know the business, the users and the goal." },
-  { step: "Design", body: "We explore directions fast and refine the one that works." },
-  { step: "Build", body: "Design and engineering ship together, not in hand-offs." },
-  { step: "Grow", body: "We stay on to measure, iterate and scale." },
+  { step: "Discover", body: "We get to know the business, the users and the goal.", icon: searchIcon },
+  { step: "Design", body: "We explore directions fast and refine the one that works.", icon: penToolIcon },
+  { step: "Build", body: "Design and engineering ship together, not in hand-offs.", icon: codeIcon },
+  { step: "Grow", body: "We stay on to measure, iterate and scale.", icon: externalLinkIcon },
 ];
 
 export default function Home() {

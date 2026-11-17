@@ -51,9 +51,9 @@ export function SweepButton({ children, tone = "light", className, arrow = true,
         {arrow && (
           <span
             aria-hidden
-            className="inline-flex w-0 overflow-hidden opacity-0 transition-all duration-200 ease-out group-hover:w-[1.4em] group-hover:opacity-100 group-hover:duration-300 group-focus-visible:w-[1.4em] group-focus-visible:opacity-100"
+            className="inline-flex w-0 overflow-hidden opacity-0 transition-all duration-200 ease-out group-hover:w-[1.6em] group-hover:opacity-100 group-hover:duration-300 group-focus-visible:w-[1.6em] group-focus-visible:opacity-100"
           >
-            <ArrowRight className="size-[1.1em] -translate-x-2 transition-transform duration-300 ease-out group-hover:translate-x-0" />
+            <ArrowRight className="size-[1.6em] -translate-x-2 transition-transform duration-300 ease-out group-hover:translate-x-0" />
           </span>
         )}
         {children}
