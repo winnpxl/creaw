@@ -9,8 +9,9 @@ import {
   SmartHeader,
 } from "@/components/motion";
 import { ArrowRight, Logo } from "@/components/brand";
+import { ServicesFan, type Service } from "@/components/services-fan";
 
-const services = [
+const services: Service[] = [
   {
     no: "01",
     title: "Brand & Identity",
@@ -55,7 +56,7 @@ const process = [
 
 function Label({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-mono text-xs uppercase tracking-widest text-muted">
+    <p className="text-xs uppercase tracking-widest text-muted">
       {children}
     </p>
   );
@@ -123,21 +124,9 @@ export default function Home() {
               text="Everything you need to launch, under one roof."
               className="mt-4 max-w-3xl text-3xl font-medium tracking-tight md:text-5xl"
             />
-            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2">
-              {services.map((s, i) => (
-                <FadeIn key={s.no} delay={i * 0.08} className="bg-background">
-                  <article className="group h-full p-8 transition-colors duration-500 hover:bg-foreground hover:text-background md:p-10">
-                    <span className="font-mono text-xs text-accent">{s.no}</span>
-                    <h3 className="mt-4 text-2xl font-medium tracking-tight transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2">
-                      {s.title}
-                    </h3>
-                    <p className="mt-3 max-w-sm text-muted transition-colors duration-500 group-hover:text-background/60">
-                      {s.body}
-                    </p>
-                  </article>
-                </FadeIn>
-              ))}
-            </div>
+            <FadeIn delay={0.2} className="mt-12 md:mt-16">
+              <ServicesFan services={services} />
+            </FadeIn>
           </div>
         </section>
 
@@ -146,7 +135,7 @@ export default function Home() {
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-10">
             <div className="flex items-end justify-between">
               <Label>Selected Work</Label>
-              <span className="font-mono text-xs text-muted">({work.length})</span>
+              <span className="text-xs text-muted">({work.length})</span>
             </div>
             <div className="mt-10 grid gap-x-8 gap-y-14 md:grid-cols-2">
               {work.map((w, i) => (
@@ -161,7 +150,7 @@ export default function Home() {
                       <h3 className="text-xl font-medium tracking-tight transition-colors group-hover:text-accent">
                         {w.name}
                       </h3>
-                      <span className="font-mono text-xs text-muted">{w.year}</span>
+                      <span className="text-xs text-muted">{w.year}</span>
                     </div>
                     <p className="text-sm text-muted">{w.tags}</p>
                   </FadeIn>
@@ -199,7 +188,7 @@ export default function Home() {
               {process.map((p, i) => (
                 <li key={p.step}>
                   <FadeIn delay={i * 0.1} className="border-t border-foreground pt-6">
-                    <span className="font-mono text-xs text-muted">0{i + 1}</span>
+                    <span className="text-xs text-muted">0{i + 1}</span>
                     <h3 className="mt-2 text-xl font-medium">{p.step}</h3>
                     <p className="mt-2 text-muted">{p.body}</p>
                   </FadeIn>
@@ -212,7 +201,7 @@ export default function Home() {
         {/* CTA */}
         <section id="contact" className="bg-foreground text-background">
           <div className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32">
-            <p className="font-mono text-xs uppercase tracking-widest opacity-60">
+            <p className="text-xs uppercase tracking-widest opacity-60">
               Have a project?
             </p>
             <RevealText

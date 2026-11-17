@@ -6,6 +6,7 @@
   --background: #f4f2ee;
   --foreground: #121212;
   --muted: #6b6862;
+  --surface: #ebe8e2;
   --line: #d9d5cd;
   --accent: #ff4d1c;
 }
@@ -14,10 +15,11 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
+  --color-surface: var(--surface);
   --color-line: var(--line);
   --color-accent: var(--accent);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --ease-lens: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 
