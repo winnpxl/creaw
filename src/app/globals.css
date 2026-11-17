@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "lenis/dist/lenis.css";
 
 /* Baseline tokens — expect these to change once references are in. */
 :root {
@@ -19,9 +20,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-html {
-  scroll-behavior: smooth;
-}
 
 body {
   background: var(--background);

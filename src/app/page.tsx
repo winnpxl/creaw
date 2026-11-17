@@ -1,4 +1,14 @@
-// Baseline homepage. Copy and work items are placeholders until real content lands.
+// Homepage. Copy, stats and work items are placeholders until real content lands.
+import {
+  Counter,
+  FadeIn,
+  Marquee,
+  ParallaxMedia,
+  RevealText,
+  RollButton,
+  SmartHeader,
+} from "@/components/motion";
+import { ArrowRight, Logo } from "@/components/brand";
 
 const services = [
   {
@@ -30,6 +40,12 @@ const work = [
   { name: "Project Four", tags: "Brand · Product", year: "2025" },
 ];
 
+const stats = [
+  { to: 40, suffix: "+", label: "Products shipped" },
+  { to: 6, suffix: "yrs", label: "Designing & building" },
+  { to: 98, suffix: "%", label: "Clients who return" },
+];
+
 const process = [
   { step: "Discover", body: "We get to know the business, the users and the goal." },
   { step: "Design", body: "We explore directions fast and refine the one that works." },
@@ -48,54 +64,78 @@ function Label({ children }: { children: React.ReactNode }) {
 export default function Home() {
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-line bg-background/80 backdrop-blur">
+      <SmartHeader>
         <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10">
-          <a href="#" className="text-lg font-semibold tracking-tight">
-            Crews<span className="text-accent">.</span>
+          <a href="#top" aria-label="Crews, back to top" className="flex transition-colors hover:text-accent">
+            <Logo />
           </a>
           <ul className="hidden gap-8 text-sm md:flex">
-            <li><a href="#services" className="hover:text-accent">Services</a></li>
-            <li><a href="#work" className="hover:text-accent">Work</a></li>
-            <li><a href="#process" className="hover:text-accent">Process</a></li>
+            <li><a href="#services" className="transition-colors hover:text-accent">Services</a></li>
+            <li><a href="#work" className="transition-colors hover:text-accent">Work</a></li>
+            <li><a href="#process" className="transition-colors hover:text-accent">Process</a></li>
           </ul>
-          <a
-            href="#contact"
-            className="rounded-full bg-foreground px-4 py-2 text-sm text-background transition hover:bg-accent"
-          >
-            Start a project
-          </a>
+          <RollButton href="#contact">Start a project</RollButton>
         </nav>
-      </header>
+      </SmartHeader>
 
-      <main className="flex-1">
+      <main id="top" className="flex-1">
         {/* Hero */}
-        <section className="mx-auto max-w-7xl px-5 pb-20 pt-24 md:px-10 md:pt-36">
-          <Label>Design & Development Studio</Label>
-          <h1 className="mt-6 max-w-5xl text-5xl font-medium leading-[0.95] tracking-tight md:text-8xl">
-            We design and build digital products, as one crew.
-          </h1>
+        <section className="mx-auto max-w-7xl px-5 pb-16 pt-24 md:px-10 md:pt-36">
+          <FadeIn y={12}>
+            <Label>Design & Development Studio</Label>
+          </FadeIn>
+          <RevealText
+            as="h1"
+            delay={0.1}
+            text="We design and build digital products, as one crew."
+            className="mt-6 max-w-5xl text-5xl font-medium leading-[0.95] tracking-tight md:text-8xl"
+          />
           <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <p className="max-w-md text-lg text-muted">
-              Brand, product and engineering under one roof, for teams who want
-              ideas shipped, not just presented.
-            </p>
-            <a href="#work" className="text-sm underline underline-offset-4 hover:text-accent">
-              See selected work ↓
-            </a>
+            <FadeIn delay={0.6}>
+              <p className="max-w-md text-lg text-muted">
+                Brand, product and engineering under one roof, for teams who
+                want ideas shipped, not just presented.
+              </p>
+            </FadeIn>
+            <FadeIn delay={0.75}>
+              <a href="#work" className="group inline-flex items-center gap-1 text-sm underline underline-offset-4 transition-colors hover:text-accent">
+                See selected work
+                <ArrowRight className="size-4 rotate-90 transition-transform duration-500 group-hover:translate-y-0.5" />
+              </a>
+            </FadeIn>
           </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-5 md:px-10">
+          <ParallaxMedia className="aspect-[16/9] md:aspect-[21/9]" />
+        </section>
+
+        {/* Marquee */}
+        <section className="py-20 md:py-28">
+          <Marquee items={["Brand", "Product", "Web", "Mobile", "Motion"]} />
         </section>
 
         {/* Services */}
         <section id="services" className="border-t border-line">
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-10">
             <Label>Services</Label>
-            <div className="mt-10 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2">
-              {services.map((s) => (
-                <article key={s.no} className="bg-background p-8 md:p-10">
-                  <span className="font-mono text-xs text-accent">{s.no}</span>
-                  <h3 className="mt-4 text-2xl font-medium tracking-tight">{s.title}</h3>
-                  <p className="mt-3 max-w-sm text-muted">{s.body}</p>
-                </article>
+            <RevealText
+              text="Everything you need to launch, under one roof."
+              className="mt-4 max-w-3xl text-3xl font-medium tracking-tight md:text-5xl"
+            />
+            <div className="mt-12 grid gap-px overflow-hidden rounded-2xl border border-line bg-line md:grid-cols-2">
+              {services.map((s, i) => (
+                <FadeIn key={s.no} delay={i * 0.08} className="bg-background">
+                  <article className="group h-full p-8 transition-colors duration-500 hover:bg-foreground hover:text-background md:p-10">
+                    <span className="font-mono text-xs text-accent">{s.no}</span>
+                    <h3 className="mt-4 text-2xl font-medium tracking-tight transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2">
+                      {s.title}
+                    </h3>
+                    <p className="mt-3 max-w-sm text-muted transition-colors duration-500 group-hover:text-background/60">
+                      {s.body}
+                    </p>
+                  </article>
+                </FadeIn>
               ))}
             </div>
           </div>
@@ -108,22 +148,42 @@ export default function Home() {
               <Label>Selected Work</Label>
               <span className="font-mono text-xs text-muted">({work.length})</span>
             </div>
-            <div className="mt-10 grid gap-8 md:grid-cols-2">
-              {work.map((w) => (
-                <a key={w.name} href="#" className="group block">
-                  <div className="aspect-[4/3] overflow-hidden rounded-2xl bg-line">
-                    <div className="h-full w-full transition duration-500 group-hover:scale-105 group-hover:bg-foreground/10" />
-                  </div>
-                  <div className="mt-4 flex items-baseline justify-between">
-                    <h3 className="text-xl font-medium tracking-tight group-hover:text-accent">
-                      {w.name}
-                    </h3>
-                    <span className="font-mono text-xs text-muted">{w.year}</span>
-                  </div>
-                  <p className="text-sm text-muted">{w.tags}</p>
+            <div className="mt-10 grid gap-x-8 gap-y-14 md:grid-cols-2">
+              {work.map((w, i) => (
+                <a
+                  key={w.name}
+                  href="#"
+                  className={`group block ${i % 2 === 1 ? "md:mt-24" : ""}`}
+                >
+                  <ParallaxMedia className="aspect-[4/3]" />
+                  <FadeIn y={16}>
+                    <div className="mt-4 flex items-baseline justify-between">
+                      <h3 className="text-xl font-medium tracking-tight transition-colors group-hover:text-accent">
+                        {w.name}
+                      </h3>
+                      <span className="font-mono text-xs text-muted">{w.year}</span>
+                    </div>
+                    <p className="text-sm text-muted">{w.tags}</p>
+                  </FadeIn>
                 </a>
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* Stats */}
+        <section className="border-t border-line">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-3 md:px-10">
+            {stats.map((s, i) => (
+              <FadeIn key={s.label} delay={i * 0.1}>
+                <Counter
+                  to={s.to}
+                  suffix={s.suffix}
+                  className="block text-6xl font-medium tracking-tight md:text-8xl"
+                />
+                <p className="mt-2 text-muted">{s.label}</p>
+              </FadeIn>
+            ))}
           </div>
         </section>
 
@@ -131,12 +191,18 @@ export default function Home() {
         <section id="process" className="border-t border-line">
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-10">
             <Label>How we work</Label>
-            <ol className="mt-10 grid gap-10 md:grid-cols-4">
+            <RevealText
+              text="A simple process, run by the people doing the work."
+              className="mt-4 max-w-3xl text-3xl font-medium tracking-tight md:text-5xl"
+            />
+            <ol className="mt-12 grid gap-10 md:grid-cols-4">
               {process.map((p, i) => (
-                <li key={p.step} className="border-t border-foreground pt-6">
-                  <span className="font-mono text-xs text-muted">0{i + 1}</span>
-                  <h3 className="mt-2 text-xl font-medium">{p.step}</h3>
-                  <p className="mt-2 text-muted">{p.body}</p>
+                <li key={p.step}>
+                  <FadeIn delay={i * 0.1} className="border-t border-foreground pt-6">
+                    <span className="font-mono text-xs text-muted">0{i + 1}</span>
+                    <h3 className="mt-2 text-xl font-medium">{p.step}</h3>
+                    <p className="mt-2 text-muted">{p.body}</p>
+                  </FadeIn>
                 </li>
               ))}
             </ol>
@@ -149,15 +215,15 @@ export default function Home() {
             <p className="font-mono text-xs uppercase tracking-widest opacity-60">
               Have a project?
             </p>
-            <h2 className="mt-6 max-w-4xl text-4xl font-medium leading-tight tracking-tight md:text-7xl">
-              Let&apos;s build something worth shipping.
-            </h2>
-            <a
-              href="mailto:hello@crews.studio"
-              className="mt-10 inline-block rounded-full bg-accent px-6 py-3 text-foreground transition hover:bg-background"
-            >
-              hello@crews.studio
-            </a>
+            <RevealText
+              text="Let's build something worth shipping."
+              className="mt-6 max-w-4xl text-4xl font-medium leading-tight tracking-tight md:text-7xl"
+            />
+            <FadeIn delay={0.4} className="mt-10">
+              <RollButton href="mailto:hello@crews.studio" variant="accent">
+                hello@crews.studio
+              </RollButton>
+            </FadeIn>
           </div>
         </section>
       </main>
@@ -166,9 +232,9 @@ export default function Home() {
         <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 text-sm text-muted md:flex-row md:justify-between md:px-10">
           <span>© 2026 Crews Studio</span>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-foreground">Instagram</a>
-            <a href="#" className="hover:text-foreground">LinkedIn</a>
-            <a href="#" className="hover:text-foreground">Dribbble</a>
+            <a href="#" className="transition-colors hover:text-foreground">Instagram</a>
+            <a href="#" className="transition-colors hover:text-foreground">LinkedIn</a>
+            <a href="#" className="transition-colors hover:text-foreground">Dribbble</a>
           </div>
         </div>
       </footer>
