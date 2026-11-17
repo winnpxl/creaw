@@ -8,7 +8,9 @@
   --muted: #6b6862;
   --surface: #ebe8e2;
   --line: #d9d5cd;
-  --accent: #ff4d1c;
+  /* Wise Bright Green + Forest Green. Text on accent uses accent-ink, never white. */
+  --accent: #9fe870;
+  --accent-ink: #163300;
 }
 
 @theme inline {
@@ -18,6 +20,7 @@
   --color-surface: var(--surface);
   --color-line: var(--line);
   --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
   --font-sans: var(--font-geist-sans);
   --ease-lens: cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -30,7 +33,7 @@ body {
 
 ::selection {
   background: var(--accent);
-  color: var(--background);
+  color: var(--accent-ink);
 }
 
 

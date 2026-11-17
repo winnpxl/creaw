@@ -5,11 +5,11 @@ import {
   Marquee,
   ParallaxMedia,
   RevealText,
-  RollButton,
 } from "@/components/motion";
 import { ArrowRight } from "@/components/brand";
 import { HeroBackdrop } from "@/components/hero-backdrop";
 import { SiteHeader } from "@/components/site-header";
+import { CtaFooter } from "@/components/cta-footer";
 import { ServicesFan, type Service } from "@/components/services-fan";
 
 const services: Service[] = [
@@ -79,7 +79,7 @@ export default function Home() {
                 </p>
               </FadeIn>
               <FadeIn delay={0.75}>
-                <a href="#work" className="group inline-flex items-center gap-1 text-sm underline underline-offset-4 transition-colors hover:text-accent">
+                <a href="#work" className="group inline-flex items-center gap-1 text-sm underline underline-offset-4 transition-colors hover:text-accent-ink">
                   See selected work
                   <ArrowRight className="size-4 rotate-90 transition-transform duration-500 group-hover:translate-y-0.5" />
                 </a>
@@ -123,7 +123,7 @@ export default function Home() {
                   <ParallaxMedia className="aspect-[4/3]" />
                   <FadeIn y={16}>
                     <div className="mt-4 flex items-baseline justify-between">
-                      <h3 className="text-xl font-medium tracking-tight transition-colors group-hover:text-accent">
+                      <h3 className="text-xl font-medium tracking-tight transition-colors group-hover:text-accent-ink">
                         {w.name}
                       </h3>
                       <span className="text-xs text-muted">{w.year}</span>
@@ -172,33 +172,9 @@ export default function Home() {
             </ol>
           </div>
         </section>
-
-        {/* CTA */}
-        <section id="contact" className="bg-foreground text-background">
-          <div className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32">
-            <RevealText
-              text="Let's build something worth shipping."
-              className="max-w-4xl text-4xl font-medium leading-tight tracking-tight md:text-7xl"
-            />
-            <FadeIn delay={0.4} className="mt-10">
-              <RollButton href="mailto:hello@crews.studio" variant="accent">
-                hello@crews.studio
-              </RollButton>
-            </FadeIn>
-          </div>
-        </section>
       </main>
 
-      <footer className="border-t border-line">
-        <div className="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-8 text-sm text-muted md:flex-row md:justify-between md:px-10">
-          <span>© 2026 Crews Studio</span>
-          <div className="flex gap-6">
-            <a href="#" className="transition-colors hover:text-foreground">Instagram</a>
-            <a href="#" className="transition-colors hover:text-foreground">LinkedIn</a>
-            <a href="#" className="transition-colors hover:text-foreground">Dribbble</a>
-          </div>
-        </div>
-      </footer>
+      <CtaFooter />
     </>
   );
 }

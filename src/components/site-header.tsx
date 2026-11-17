@@ -3,6 +3,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Logo } from "@/components/brand";
+import { SweepButton } from "@/components/sweep-button";
 
 const links = [
   { label: "Home", href: "#top" },
@@ -23,7 +24,31 @@ const OPEN = "inset(0px 0px 0px 0px)";
  */
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  const [onDark, setOnDark] = useState(false);
   const groupRef = useRef<HTMLDivElement>(null);
+
+  // Flip the logo to white while a section marked data-header-tone="dark" is behind it.
+  useEffect(() => {
+    let raf = 0;
+    const check = () => {
+      const hit = document
+        .elementsFromPoint(40, 47)
+        .find((el) => el.closest("[data-header-tone]"));
+      setOnDark(hit?.closest("[data-header-tone]")?.getAttribute("data-header-tone") === "dark");
+    };
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(check);
+    };
+    check();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     if (!open) return;
@@ -45,7 +70,7 @@ export function SiteHeader() {
         <a
           href="#top"
           aria-label="Crews, back to top"
-          className="pointer-events-auto flex h-[45px] items-center"
+          className={`pointer-events-auto flex h-[45px] items-center transition-colors duration-300 ${onDark ? "text-white" : "text-foreground"}`}
         >
           <Logo className="h-[18px]" />
         </a>
@@ -54,12 +79,12 @@ export function SiteHeader() {
           ref={groupRef}
           className="pointer-events-auto relative flex md:w-60"
         >
-          <a
+          <SweepButton
             href="#contact"
-            className="hidden h-[45px] flex-1 items-center justify-center border border-line bg-background text-[15px] font-medium uppercase tracking-wide transition-colors duration-300 hover:bg-foreground hover:text-background md:flex"
+            className="hidden! h-[45px] flex-1 text-[15px] font-medium uppercase tracking-wide md:inline-flex!"
           >
             Book a call
-          </a>
+          </SweepButton>
 
           <button
             type="button"
@@ -67,8 +92,13 @@ export function SiteHeader() {
             aria-controls="site-menu"
             aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((o) => !o)}
-            className="relative z-20 grid size-[45px] shrink-0 place-items-center bg-foreground text-background transition-colors duration-300 hover:bg-accent"
+            className="group relative isolate z-20 grid size-[45px] shrink-0 place-items-center overflow-hidden bg-foreground text-background transition-colors duration-150 hover:text-accent-ink focus-visible:text-accent-ink"
           >
+            {/* Same sweep fill as SweepButton. */}
+            <span
+              aria-hidden
+              className="absolute inset-0 -z-10 origin-left scale-x-0 bg-accent transition-transform duration-200 ease-out group-hover:scale-x-100 group-hover:duration-300 group-focus-visible:scale-x-100"
+            />
             <span className="relative block h-3 w-6">
               <span
                 className={`absolute left-0 h-[1.5px] w-full bg-current transition-all duration-300 ease-lens ${

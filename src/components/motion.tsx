@@ -10,7 +10,6 @@ import {
   useTransform,
 } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight } from "@/components/brand";
 
 /** Shared easing: fast start, long soft settle. Most of the "feel" lives here. */
 export const ease = [0.22, 1, 0.36, 1] as const;
@@ -30,11 +29,16 @@ export function RevealText({
   className,
   delay = 0,
   as: Tag = "h2",
+  toneFirst = 0,
+  toneClass,
 }: {
   text: string;
   className?: string;
   delay?: number;
   as?: "h1" | "h2" | "h3" | "p";
+  /** Color the first N words with `toneClass` (two-tone headlines). */
+  toneFirst?: number;
+  toneClass?: string;
 }) {
   const ref = useRef<HTMLHeadingElement>(null);
   const inView = useInView(ref, { once: true, margin: "0px 0px -10% 0px" });
@@ -49,7 +53,7 @@ export function RevealText({
           className="inline-block overflow-hidden pb-[0.1em] align-top"
         >
           <motion.span
-            className="inline-block"
+            className={`inline-block ${i < toneFirst ? (toneClass ?? "") : ""}`}
             initial={{ y: "110%", rotate: 4 }}
             animate={inView ? { y: "0%", rotate: 0 } : undefined}
             transition={{ duration: 1, ease, delay: delay + i * 0.06 }}
@@ -162,46 +166,10 @@ export function Marquee({ items }: { items: string[] }) {
             className="flex items-center gap-8 pr-8 text-5xl font-medium tracking-tight md:text-7xl"
           >
             {item}
-            <span className="text-accent">✳</span>
+            <span className="text-accent-ink">✳</span>
           </span>
         ))}
       </motion.div>
     </div>
-  );
-}
-
-/** Pill button whose label rolls up on hover, Framer-style. */
-export function RollButton({
-  href,
-  children,
-  variant = "dark",
-}: {
-  href: string;
-  children: string;
-  variant?: "dark" | "accent";
-}) {
-  const styles =
-    variant === "dark"
-      ? "bg-foreground text-background hover:bg-accent"
-      : "bg-accent text-foreground hover:bg-background";
-  return (
-    <motion.a
-      href={href}
-      whileTap={{ scale: 0.96 }}
-      className={`group relative inline-flex items-center gap-2 overflow-hidden rounded px-5 py-2.5 text-sm transition-colors duration-300 ${styles}`}
-    >
-      <span className="relative block overflow-hidden">
-        <span className="block transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-full">
-          {children}
-        </span>
-        <span
-          aria-hidden
-          className="absolute inset-0 block translate-y-full transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-y-0"
-        >
-          {children}
-        </span>
-      </span>
-      <ArrowRight className="-mr-1 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-1 group-hover:-rotate-45" />
-    </motion.a>
   );
 }

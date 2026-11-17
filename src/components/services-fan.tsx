@@ -154,7 +154,7 @@ export function ServicesFan({ services }: { services: Service[] }) {
                   <a
                     href={s.href ?? "#contact"}
                     tabIndex={on ? 0 : -1}
-                    className="group/link inline-flex min-h-11 items-center gap-1.5 font-medium transition-colors hover:text-accent"
+                    className="group/link inline-flex min-h-11 items-center gap-1.5 font-medium transition-colors hover:text-accent-ink"
                   >
                     Take a closer look
                     <ArrowRight className="size-4 transition-transform duration-500 ease-lens group-hover/link:translate-x-1" />
