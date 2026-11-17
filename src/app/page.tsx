@@ -11,10 +11,6 @@ import { HeroBackdrop } from "@/components/hero-backdrop";
 import { SiteHeader } from "@/components/site-header";
 import { CtaFooter } from "@/components/cta-footer";
 import { ProcessSteps, type Step } from "@/components/process-steps";
-import searchIcon from "kubai-icons-static/svg/search.svg";
-import penToolIcon from "kubai-icons-static/svg/pen-tool.svg";
-import codeIcon from "kubai-icons-static/svg/code.svg";
-import externalLinkIcon from "kubai-icons-static/svg/external-link.svg";
 import { ServicesFan, type Service } from "@/components/services-fan";
 
 const services: Service[] = [
@@ -53,11 +49,12 @@ const stats = [
   { to: 98, suffix: "%", label: "Clients who return" },
 ];
 
+// Kubai Icons (MIT), recolored to brand green via icons.kubai.design.
 const process: Step[] = [
-  { step: "Discover", body: "We get to know the business, the users and the goal.", icon: searchIcon },
-  { step: "Design", body: "We explore directions fast and refine the one that works.", icon: penToolIcon },
-  { step: "Build", body: "Design and engineering ship together, not in hand-offs.", icon: codeIcon },
-  { step: "Grow", body: "We stay on to measure, iterate and scale.", icon: externalLinkIcon },
+  { step: "Discover", body: "We get to know the business, the users and the goal.", icon: "/icons/process/search.svg" },
+  { step: "Design", body: "We explore directions fast and refine the one that works.", icon: "/icons/process/pen-tool.svg" },
+  { step: "Build", body: "Design and engineering ship together, not in hand-offs.", icon: "/icons/process/code.svg" },
+  { step: "Grow", body: "We stay on to measure, iterate and scale.", icon: "/icons/process/external-link.svg" },
 ];
 
 export default function Home() {
