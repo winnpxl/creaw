@@ -10,6 +10,7 @@ import { ArrowRight } from "@/components/brand";
 import { HeroBackdrop } from "@/components/hero-backdrop";
 import { SiteHeader } from "@/components/site-header";
 import { CtaFooter } from "@/components/cta-footer";
+import { ProcessSteps, type Step } from "@/components/process-steps";
 import { ServicesFan, type Service } from "@/components/services-fan";
 
 const services: Service[] = [
@@ -48,7 +49,7 @@ const stats = [
   { to: 98, suffix: "%", label: "Clients who return" },
 ];
 
-const process = [
+const process: Step[] = [
   { step: "Discover", body: "We get to know the business, the users and the goal." },
   { step: "Design", body: "We explore directions fast and refine the one that works." },
   { step: "Build", body: "Design and engineering ship together, not in hand-offs." },
@@ -98,7 +99,7 @@ export default function Home() {
         </section>
 
         {/* Services */}
-        <section id="services" className="border-t border-line">
+        <section id="services">
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-10">
             <RevealText
               text="Everything you need to launch, under one roof."
@@ -111,7 +112,7 @@ export default function Home() {
         </section>
 
         {/* Work */}
-        <section id="work" className="border-t border-line">
+        <section id="work">
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-10">
             <div className="grid gap-x-8 gap-y-14 md:grid-cols-2">
               {work.map((w, i) => (
@@ -137,7 +138,7 @@ export default function Home() {
         </section>
 
         {/* Stats */}
-        <section className="border-t border-line">
+        <section>
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-3 md:px-10">
             {stats.map((s, i) => (
               <FadeIn key={s.label} delay={i * 0.1}>
@@ -153,23 +154,15 @@ export default function Home() {
         </section>
 
         {/* Process */}
-        <section id="process" className="border-t border-line">
-          <div className="mx-auto max-w-7xl px-5 py-20 md:px-10">
+        <section id="process">
+          <div className="mx-auto max-w-7xl px-5 py-32 md:px-10 md:py-48">
             <RevealText
               text="A simple process, run by the people doing the work."
               className="max-w-3xl text-3xl font-medium tracking-tight md:text-5xl"
             />
-            <ol className="mt-12 grid gap-10 md:grid-cols-4">
-              {process.map((p, i) => (
-                <li key={p.step}>
-                  <FadeIn delay={i * 0.1} className="border-t border-foreground pt-6">
-                    <span className="text-xs text-muted">0{i + 1}</span>
-                    <h3 className="mt-2 text-xl font-medium">{p.step}</h3>
-                    <p className="mt-2 text-muted">{p.body}</p>
-                  </FadeIn>
-                </li>
-              ))}
-            </ol>
+            <FadeIn delay={0.1} className="mt-12">
+              <ProcessSteps steps={process} />
+            </FadeIn>
           </div>
         </section>
       </main>
