@@ -3,8 +3,8 @@
 
 /* Baseline tokens — expect these to change once references are in. */
 :root {
-  --background: #f4f2ee;
-  --foreground: #121212;
+  --background: #f2f0ee;
+  --foreground: #202020;
   --muted: #6b6862;
   --surface: #ebe8e2;
   --line: #d9d5cd;
@@ -31,4 +31,11 @@ body {
 ::selection {
   background: var(--accent);
   color: var(--background);
+}
+
+
+@keyframes terrain-drift {
+  to {
+    background-position-x: -1792px;
+  }
 }

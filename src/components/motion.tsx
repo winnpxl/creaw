@@ -6,7 +6,6 @@ import {
   motion,
   MotionConfig,
   useInView,
-  useMotionValueEvent,
   useScroll,
   useTransform,
 } from "motion/react";
@@ -22,27 +21,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
     <ReactLenis root options={{ lerp: 0.09, anchors: { offset: -72 } }}>
       <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </ReactLenis>
-  );
-}
-
-/** Header that slides away when scrolling down and returns when scrolling up. */
-export function SmartHeader({ children }: { children: React.ReactNode }) {
-  const { scrollY } = useScroll();
-  const [hidden, setHidden] = useState(false);
-
-  useMotionValueEvent(scrollY, "change", (y) => {
-    const prev = scrollY.getPrevious() ?? 0;
-    setHidden(y > prev && y > 160);
-  });
-
-  return (
-    <motion.header
-      animate={{ y: hidden ? "-110%" : "0%" }}
-      transition={{ duration: 0.5, ease }}
-      className="sticky top-0 z-50 border-b border-line bg-background/80 backdrop-blur"
-    >
-      {children}
-    </motion.header>
   );
 }
 

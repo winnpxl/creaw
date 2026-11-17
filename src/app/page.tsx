@@ -6,9 +6,10 @@ import {
   ParallaxMedia,
   RevealText,
   RollButton,
-  SmartHeader,
 } from "@/components/motion";
-import { ArrowRight, Logo } from "@/components/brand";
+import { ArrowRight } from "@/components/brand";
+import { HeroBackdrop } from "@/components/hero-backdrop";
+import { SiteHeader } from "@/components/site-header";
 import { ServicesFan, type Service } from "@/components/services-fan";
 
 const services: Service[] = [
@@ -54,56 +55,36 @@ const process = [
   { step: "Grow", body: "We stay on to measure, iterate and scale." },
 ];
 
-function Label({ children }: { children: React.ReactNode }) {
-  return (
-    <p className="text-xs uppercase tracking-widest text-muted">
-      {children}
-    </p>
-  );
-}
-
 export default function Home() {
   return (
     <>
-      <SmartHeader>
-        <nav className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-10">
-          <a href="#top" aria-label="Crews, back to top" className="flex transition-colors hover:text-accent">
-            <Logo />
-          </a>
-          <ul className="hidden gap-8 text-sm md:flex">
-            <li><a href="#services" className="transition-colors hover:text-accent">Services</a></li>
-            <li><a href="#work" className="transition-colors hover:text-accent">Work</a></li>
-            <li><a href="#process" className="transition-colors hover:text-accent">Process</a></li>
-          </ul>
-          <RollButton href="#contact">Start a project</RollButton>
-        </nav>
-      </SmartHeader>
+      <SiteHeader />
 
       <main id="top" className="flex-1">
-        {/* Hero */}
-        <section className="mx-auto max-w-7xl px-5 pb-16 pt-24 md:px-10 md:pt-36">
-          <FadeIn y={12}>
-            <Label>Design & Development Studio</Label>
-          </FadeIn>
-          <RevealText
-            as="h1"
-            delay={0.1}
-            text="We design and build digital products, as one crew."
-            className="mt-6 max-w-5xl text-5xl font-medium leading-[0.95] tracking-tight md:text-8xl"
-          />
-          <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <FadeIn delay={0.6}>
-              <p className="max-w-md text-lg text-muted">
-                Brand, product and engineering under one roof, for teams who
-                want ideas shipped, not just presented.
-              </p>
-            </FadeIn>
-            <FadeIn delay={0.75}>
-              <a href="#work" className="group inline-flex items-center gap-1 text-sm underline underline-offset-4 transition-colors hover:text-accent">
-                See selected work
-                <ArrowRight className="size-4 rotate-90 transition-transform duration-500 group-hover:translate-y-0.5" />
-              </a>
-            </FadeIn>
+        {/* Hero: one full viewport; the terrain band sits at the bottom edge of the view. */}
+        <section className="relative h-screen min-h-[640px] overflow-hidden">
+          <HeroBackdrop />
+          <div className="relative mx-auto flex h-3/4 max-w-7xl flex-col justify-end px-5 pb-12 md:px-10 md:pb-16">
+            <RevealText
+              as="h1"
+              delay={0.1}
+              text="We design and build digital products, as one crew."
+              className="max-w-5xl text-5xl font-medium leading-[0.95] tracking-tight md:text-8xl"
+            />
+            <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+              <FadeIn delay={0.6}>
+                <p className="max-w-md text-lg text-muted">
+                  Brand, product and engineering under one roof, for teams who
+                  want ideas shipped, not just presented.
+                </p>
+              </FadeIn>
+              <FadeIn delay={0.75}>
+                <a href="#work" className="group inline-flex items-center gap-1 text-sm underline underline-offset-4 transition-colors hover:text-accent">
+                  See selected work
+                  <ArrowRight className="size-4 rotate-90 transition-transform duration-500 group-hover:translate-y-0.5" />
+                </a>
+              </FadeIn>
+            </div>
           </div>
         </section>
 
@@ -119,10 +100,9 @@ export default function Home() {
         {/* Services */}
         <section id="services" className="border-t border-line">
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-10">
-            <Label>Services</Label>
             <RevealText
               text="Everything you need to launch, under one roof."
-              className="mt-4 max-w-3xl text-3xl font-medium tracking-tight md:text-5xl"
+              className="max-w-3xl text-3xl font-medium tracking-tight md:text-5xl"
             />
             <FadeIn delay={0.2} className="mt-12 md:mt-16">
               <ServicesFan services={services} />
@@ -133,11 +113,7 @@ export default function Home() {
         {/* Work */}
         <section id="work" className="border-t border-line">
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-10">
-            <div className="flex items-end justify-between">
-              <Label>Selected Work</Label>
-              <span className="text-xs text-muted">({work.length})</span>
-            </div>
-            <div className="mt-10 grid gap-x-8 gap-y-14 md:grid-cols-2">
+            <div className="grid gap-x-8 gap-y-14 md:grid-cols-2">
               {work.map((w, i) => (
                 <a
                   key={w.name}
@@ -179,10 +155,9 @@ export default function Home() {
         {/* Process */}
         <section id="process" className="border-t border-line">
           <div className="mx-auto max-w-7xl px-5 py-20 md:px-10">
-            <Label>How we work</Label>
             <RevealText
               text="A simple process, run by the people doing the work."
-              className="mt-4 max-w-3xl text-3xl font-medium tracking-tight md:text-5xl"
+              className="max-w-3xl text-3xl font-medium tracking-tight md:text-5xl"
             />
             <ol className="mt-12 grid gap-10 md:grid-cols-4">
               {process.map((p, i) => (
@@ -201,12 +176,9 @@ export default function Home() {
         {/* CTA */}
         <section id="contact" className="bg-foreground text-background">
           <div className="mx-auto max-w-7xl px-5 py-24 md:px-10 md:py-32">
-            <p className="text-xs uppercase tracking-widest opacity-60">
-              Have a project?
-            </p>
             <RevealText
               text="Let's build something worth shipping."
-              className="mt-6 max-w-4xl text-4xl font-medium leading-tight tracking-tight md:text-7xl"
+              className="max-w-4xl text-4xl font-medium leading-tight tracking-tight md:text-7xl"
             />
             <FadeIn delay={0.4} className="mt-10">
               <RollButton href="mailto:hello@crews.studio" variant="accent">
