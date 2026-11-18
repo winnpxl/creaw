@@ -8,7 +8,7 @@ export const navLinks = [
   { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Process", href: "/#process" },
-  { label: "Pricing", href: "/#pricing" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Contact", href: "#contact" }, // the CTA lives on every page
 ];
 

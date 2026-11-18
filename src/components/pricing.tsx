@@ -1,6 +1,6 @@
 "use client";
 
-import { Check } from "lucide-react";
+import { ArrowRight, Check } from "lucide-react";
 import { animate, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { FadeIn, RevealText } from "@/components/motion";
@@ -155,7 +155,7 @@ function PlanCard({ plan, billing }: { plan: Plan; billing: Billing }) {
   );
 }
 
-export function Pricing() {
+export function Pricing({ compareLink = false }: { compareLink?: boolean }) {
   const [billing, setBilling] = useState<Billing>("monthly");
 
   return (
@@ -185,6 +185,17 @@ export function Pricing() {
 
       <FadeIn delay={0.2}>
         <p className="mt-8 text-center text-sm text-muted">{pricing.fineprint}</p>
+        {compareLink && (
+          <p className="mt-4 text-center">
+            <a
+              href="/pricing"
+              className="group inline-flex items-center gap-1.5 border-b border-foreground/30 pb-1 text-[15px] transition-colors hover:border-foreground"
+            >
+              Compare all plans
+              <ArrowRight className="size-4 transition-transform duration-300 ease-lens group-hover:translate-x-1" />
+            </a>
+          </p>
+        )}
       </FadeIn>
     </div>
   );

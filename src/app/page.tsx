@@ -136,7 +136,7 @@ export default function Home() {
         {/* Pricing */}
         <section id="pricing">
           <div className="mx-auto max-w-7xl px-5 pb-32 md:px-10 md:pb-48">
-            <Pricing />
+            <Pricing compareLink />
           </div>
         </section>
       </main>
