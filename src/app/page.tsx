@@ -11,13 +11,14 @@ import { HeroBackdrop } from "@/components/hero-backdrop";
 import { SiteHeader } from "@/components/site-header";
 import { CtaFooter } from "@/components/cta-footer";
 import { ProcessSteps, type Step } from "@/components/process-steps";
+import { WorkShowcase } from "@/components/work-showcase";
 import { ServicesFan, type Service } from "@/components/services-fan";
 
 const services: Service[] = [
   {
     no: "01",
-    title: "Brand & Identity",
-    body: "Strategy, naming, visual identity and the systems that keep it consistent.",
+    title: "Project Management",
+    body: "Scoping, roadmaps and weekly check-ins that keep every launch on time and on budget.",
   },
   {
     no: "02",
@@ -36,12 +37,6 @@ const services: Service[] = [
   },
 ];
 
-const work = [
-  { name: "Project One", tags: "Brand · Web", year: "2026" },
-  { name: "Project Two", tags: "Product · App", year: "2026" },
-  { name: "Project Three", tags: "Web · Development", year: "2025" },
-  { name: "Project Four", tags: "Brand · Product", year: "2025" },
-];
 
 const stats = [
   { to: 40, suffix: "+", label: "Products shipped" },
@@ -114,27 +109,8 @@ export default function Home() {
 
         {/* Work */}
         <section id="work">
-          <div className="mx-auto max-w-7xl px-5 py-20 md:px-10">
-            <div className="grid gap-x-8 gap-y-14 md:grid-cols-2">
-              {work.map((w, i) => (
-                <a
-                  key={w.name}
-                  href="#"
-                  className={`group block ${i % 2 === 1 ? "md:mt-24" : ""}`}
-                >
-                  <ParallaxMedia className="aspect-[4/3]" />
-                  <FadeIn y={16}>
-                    <div className="mt-4 flex items-baseline justify-between">
-                      <h3 className="text-xl font-medium tracking-tight transition-colors group-hover:text-accent-ink">
-                        {w.name}
-                      </h3>
-                      <span className="text-xs text-muted">{w.year}</span>
-                    </div>
-                    <p className="text-sm text-muted">{w.tags}</p>
-                  </FadeIn>
-                </a>
-              ))}
-            </div>
+          <div className="mx-auto max-w-7xl px-5 py-20 md:px-10 md:py-32">
+            <WorkShowcase />
           </div>
         </section>
 
