@@ -11,7 +11,7 @@ export type Plan = {
 };
 
 export const pricing = {
-  heading: "Pick your crew. Pay one flat monthly price.",
+  heading: "Pick your creaw. Pay one flat monthly price.",
   sub: "Three ways to work with us, from $6,500 a month. Pause or cancel any time with 30 days’ notice.",
   quarterlyDiscount: 0.1,
   fineprint: "Prices in USD, excluding tax. Quarterly plans are billed every three months.",
@@ -29,7 +29,7 @@ export const pricing = {
       cta: "Book a call",
     },
     {
-      name: "Crew",
+      name: "Creaw",
       monthly: 12000,
       fit: "For teams shipping new features every single week.",
       features: [
@@ -79,7 +79,7 @@ export const pricingPage = {
     items: [
       {
         q: "Can we switch plans later?",
-        a: "Yes. Move up or down at the start of any month. Most teams start on Launch and move to Crew once the product has users.",
+        a: "Yes. Move up or down at the start of any month. Most teams start on Launch and move to Creaw once the product has users.",
       },
       {
         q: "Is there a minimum term?",

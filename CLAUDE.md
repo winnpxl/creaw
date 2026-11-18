@@ -1,8 +1,8 @@
 @AGENTS.md
 
-# Crews: studio website
+# Creaw: studio website
 
-Marketing site for Crews, a design & development company.
+Marketing site for Creaw, a design & development company.
 Stack: Next.js (App Router, `src/`), React, Tailwind v4, TypeScript.
 
 ## Workflow

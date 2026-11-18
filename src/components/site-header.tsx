@@ -66,7 +66,7 @@ export function SiteHeader() {
       <div className="mx-auto flex max-w-7xl items-start justify-between px-5 pt-[25px] md:px-10">
         <a
           href={resolveHref("/#top", pathname)}
-          aria-label="Crews, home"
+          aria-label="Creaw, home"
           className={`pointer-events-auto flex h-[45px] items-center transition-colors duration-300 ${onDark ? "text-white" : "text-foreground"}`}
         >
           <Logo className="h-[18px]" />

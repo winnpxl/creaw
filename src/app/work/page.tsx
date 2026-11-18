@@ -4,8 +4,8 @@ import { SiteHeader } from "@/components/site-header";
 import { WorkIndex } from "@/components/work-index";
 
 export const metadata: Metadata = {
-  title: "Work — Crews",
-  description: "Products Crews has designed, built and shipped.",
+  title: "Work — Creaw",
+  description: "Products Creaw has designed, built and shipped.",
 };
 
 export default function WorkPage() {

@@ -141,7 +141,7 @@ export function AboutPage() {
           >
             {about.feature.image ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={about.feature.image} alt="The Crews studio" className="size-full object-cover" />
+              <img src={about.feature.image} alt="The Creaw studio" className="size-full object-cover" />
             ) : (
               // Placeholder until the studio photo lands: our drifting terrain.
               <>

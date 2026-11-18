@@ -1,9 +1,9 @@
-// About page copy. Team, numbers and quote are placeholders: swap in the real crew.
+// About page copy. Team, numbers and quote are placeholders: swap in the real creaw.
 
 export const about = {
   title: "Who we are.",
   intro:
-    "We’re a crew of designers, engineers and project managers who take products from first sketch to launch day. One team, one channel, no hand-offs: the people you meet on the first call are the people who ship your product.",
+    "We’re a creaw of designers, engineers and project managers who take products from first sketch to launch day. One team, one channel, no hand-offs: the people you meet on the first call are the people who ship your product.",
   stats: [
     { to: 3, suffix: "x", label: "Faster from kickoff to launch than a typical agency hand-off." },
     { to: 18, suffix: "+", label: "Years of combined individual experience, merged into one." },

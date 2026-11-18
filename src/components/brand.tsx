@@ -31,13 +31,13 @@ function MaskIcon({
   );
 }
 
-/** Wordmark, 130×26 (5:1). Set height via className; width follows. */
+/** Wordmark, 558×94 (~5.94:1). Set height via className; width follows. */
 export function Logo({ className }: { className?: string }) {
   return (
     <MaskIcon
-      src="/brand/crews-logo.svg"
-      label="Crews"
-      className={`aspect-[5/1] h-5 ${className ?? ""}`}
+      src="/brand/creaw-logo.svg"
+      label="Creaw"
+      className={`aspect-[558/94] h-5 ${className ?? ""}`}
     />
   );
 }

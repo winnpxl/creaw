@@ -32,7 +32,7 @@ const services: Service[] = [
   {
     no: "04",
     title: "App Development",
-    body: "Native-feeling mobile apps, from MVP to scale, shipped by the same crew.",
+    body: "Native-feeling mobile apps, from MVP to scale, shipped by the same creaw.",
   },
 ];
 
@@ -64,7 +64,7 @@ export default function Home() {
             <RevealText
               as="h1"
               delay={0.1}
-              text="We design and build digital products, as one crew."
+              text="We design and build digital products, as one creaw."
               className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-tight md:text-8xl"
             />
             <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">

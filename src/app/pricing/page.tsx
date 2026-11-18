@@ -4,8 +4,8 @@ import { PricingPage } from "@/components/pricing-page";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
-  title: "Pricing — Crews",
-  description: "Three ways to work with Crews, from one flat monthly price.",
+  title: "Pricing — Creaw",
+  description: "Three ways to work with Creaw, from one flat monthly price.",
 };
 
 export default function Pricing() {

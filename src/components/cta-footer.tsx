@@ -204,7 +204,7 @@ function Footer() {
             </div>
             <div className="col-span-2 text-[13px] font-medium leading-[1.3] text-white/60 md:col-span-1">
               <p>
-                © 2026 Crews Studio.
+                © 2026 Creaw Studio.
                 <br />
                 All rights reserved.
               </p>

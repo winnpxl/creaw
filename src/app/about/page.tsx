@@ -4,8 +4,8 @@ import { CtaFooter } from "@/components/cta-footer";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
-  title: "About — Crews",
-  description: "Who we are: one crew of designers, engineers and project managers.",
+  title: "About — Creaw",
+  description: "Who we are: one creaw of designers, engineers and project managers.",
 };
 
 export default function About() {

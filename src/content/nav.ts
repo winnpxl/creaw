@@ -12,7 +12,7 @@ export const navLinks = [
   { label: "Contact", href: "#contact" }, // the CTA lives on every page
 ];
 
-export const EMAIL = "hello@crews.studio";
+export const EMAIL = "hello@creaw.studio";
 
 export const socialLinks = [
   { label: "Instagram", href: "#" },
