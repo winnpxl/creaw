@@ -6,7 +6,7 @@ export const about = {
     "We’re a crew of designers, engineers and project managers who take products from first sketch to launch day. One team, one channel, no hand-offs: the people you meet on the first call are the people who ship your product.",
   stats: [
     { to: 3, suffix: "x", label: "Faster from kickoff to launch than a typical agency hand-off." },
-    { to: 6, suffix: "+", label: "Years designing and building digital products." },
+    { to: 18, suffix: "+", label: "Years of combined individual experience, merged into one." },
     { to: 40, suffix: "+", label: "Products shipped across hospitality, education, property and more." },
   ],
   team: [

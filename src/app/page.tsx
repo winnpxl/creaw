@@ -39,7 +39,7 @@ const services: Service[] = [
 
 const stats = [
   { to: 40, suffix: "+", label: "Products shipped" },
-  { to: 6, suffix: "yrs", label: "Designing & building" },
+  { to: 18, suffix: "+", label: "Years of combined experience" },
   { to: 98, suffix: "%", label: "Clients who return" },
 ];
 
