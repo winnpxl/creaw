@@ -10,6 +10,7 @@ import { SiteHeader } from "@/components/site-header";
 import { CtaFooter } from "@/components/cta-footer";
 import { ProcessSteps, type Step } from "@/components/process-steps";
 import { WorkShowcase } from "@/components/work-showcase";
+import { Pricing } from "@/components/pricing";
 import { ServicesFan, type Service } from "@/components/services-fan";
 
 const services: Service[] = [
@@ -129,6 +130,13 @@ export default function Home() {
             <FadeIn delay={0.1} className="mt-12">
               <ProcessSteps steps={process} />
             </FadeIn>
+          </div>
+        </section>
+
+        {/* Pricing */}
+        <section id="pricing">
+          <div className="mx-auto max-w-7xl px-5 pb-32 md:px-10 md:pb-48">
+            <Pricing />
           </div>
         </section>
       </main>

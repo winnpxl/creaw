@@ -70,7 +70,11 @@ function renderTile(height: number, color: string) {
   return canvas.toDataURL("image/png");
 }
 
-export function HeroBackdrop() {
+/**
+ * The drifting dithered terrain on its own: theme-aware, seamless, endless.
+ * Size/position it with className (it fills its box).
+ */
+export function Terrain({ className, style }: { className?: string; style?: React.CSSProperties }) {
   const bandRef = useRef<HTMLDivElement>(null);
   const [tile, setTile] = useState<{ url: string; h: number } | null>(null);
 
@@ -108,22 +112,30 @@ export function HeroBackdrop() {
   }, []);
 
   return (
+    <div
+      ref={bandRef}
+      aria-hidden
+      className={`pointer-events-none motion-safe:animate-[terrain-drift_var(--terrain-dur)_linear_infinite] ${className ?? ""}`}
+      style={
+        {
+          "--terrain-dur": `${TILE_W / SPEED}s`,
+          backgroundImage: tile ? `url(${tile.url})` : undefined,
+          backgroundSize: tile ? `${TILE_W}px ${tile.h}px` : undefined,
+          backgroundRepeat: "repeat-x",
+          opacity: tile ? 1 : 0,
+          transition: "opacity 1s ease",
+          ...style,
+        } as React.CSSProperties
+      }
+    />
+  );
+}
+
+export function HeroBackdrop() {
+  return (
     <div aria-hidden className="pointer-events-none absolute inset-0">
       {/* Dithered terrain band: bottom quarter of the hero. */}
-      <div
-        ref={bandRef}
-        className="absolute inset-x-0 bottom-0 h-1/4 motion-safe:animate-[terrain-drift_var(--terrain-dur)_linear_infinite]"
-        style={
-          {
-            "--terrain-dur": `${TILE_W / SPEED}s`,
-            backgroundImage: tile ? `url(${tile.url})` : undefined,
-            backgroundSize: tile ? `${TILE_W}px ${tile.h}px` : undefined,
-            backgroundRepeat: "repeat-x",
-            opacity: tile ? 1 : 0,
-            transition: "opacity 1s ease",
-          } as React.CSSProperties
-        }
-      />
+      <Terrain className="absolute inset-x-0 bottom-0 h-1/4" />
 
       {/* Horizon. */}
       <span className="absolute inset-x-0 bottom-1/4 h-px bg-foreground/[0.12]" />
