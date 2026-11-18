@@ -66,9 +66,25 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  transition:
-    background-color 0.4s ease,
-    color 0.4s ease;
+}
+
+/* Theme switch: Star Wars–style wipe. The old theme stays put while the new
+   one is revealed behind a hard vertical edge travelling left → right. */
+html.theme-wipe::view-transition-old(root),
+html.theme-wipe::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+html.theme-wipe::view-transition-new(root) {
+  animation: theme-wipe 0.8s cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+@keyframes theme-wipe {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
 }
 
 ::selection {

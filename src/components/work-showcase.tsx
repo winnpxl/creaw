@@ -142,7 +142,7 @@ function Panel({ p, i, on }: { p: ShowcaseProject; i: number; on: boolean }) {
       inert={!on}
       animate={{ opacity: on ? 1 : 0 }}
       transition={{ duration: 0.5, ease }}
-      className="grid w-full shrink-0 gap-6 rounded-[12px] border border-line bg-surface p-3 md:grid-cols-[minmax(0,5fr)_minmax(0,8fr)] md:p-4"
+      className="grid w-full shrink-0 gap-6 rounded-[2px] border border-line bg-surface p-3 md:grid-cols-[minmax(0,5fr)_minmax(0,8fr)] md:p-4"
     >
       {/* Copy */}
       <div className="flex flex-col justify-center px-4 py-8 md:px-10">
@@ -170,7 +170,7 @@ function Panel({ p, i, on }: { p: ShowcaseProject; i: number; on: boolean }) {
 
       {/* Media */}
       <div
-        className="relative aspect-[4/3] overflow-hidden rounded-[8px] md:aspect-auto md:min-h-[34rem]"
+        className="relative aspect-[4/3] overflow-hidden rounded-[2px] md:aspect-auto md:min-h-[34rem]"
         style={{
           backgroundImage: `repeating-linear-gradient(115deg, rgb(255 255 255 / 0.16) 0 2px, transparent 2px 26px), linear-gradient(135deg, ${p.colors[0]}, ${p.colors[1]})`,
         }}
@@ -180,7 +180,7 @@ function Panel({ p, i, on }: { p: ShowcaseProject; i: number; on: boolean }) {
           <img src={p.image} alt={`${p.name} product screens`} className="absolute inset-0 size-full object-cover" />
         ) : (
           // Placeholder "screen" until the product shot lands.
-          <div className="absolute inset-x-[8%] bottom-0 top-[12%] grid place-items-center rounded-t-[14px] border border-white/60 bg-white/75 backdrop-blur-sm">
+          <div className="absolute inset-x-[8%] bottom-0 top-[12%] grid place-items-center rounded-t-[2px] border border-white/60 bg-white/75 backdrop-blur-sm">
             <span className="flex items-center gap-2 text-xl font-medium text-[#202020]/70">
               <p.icon className="size-6" strokeWidth={1.6} />
               {p.name}

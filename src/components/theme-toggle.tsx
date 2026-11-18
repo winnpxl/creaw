@@ -22,6 +22,23 @@ export function setTheme(t: Theme) {
 }
 
 /**
+ * Switch theme with a Star Wars–style wipe: the new theme is revealed behind a
+ * hard vertical edge sweeping left → right (View Transitions API; animation in
+ * globals.css). Falls back to an instant switch when unsupported or when the
+ * visitor prefers reduced motion.
+ */
+export function switchTheme(t: Theme) {
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!document.startViewTransition || reduce) {
+    setTheme(t);
+    return;
+  }
+  document.documentElement.classList.add("theme-wipe");
+  const vt = document.startViewTransition(() => setTheme(t));
+  vt.finished.finally(() => document.documentElement.classList.remove("theme-wipe"));
+}
+
+/**
  * Square sun/moon toggle using the Kubai icons (brand green, public/icons/theme).
  * Sweep fill is the text color, not green, so the green icon stays visible.
  */
@@ -33,7 +50,7 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      onClick={() => setTheme(next)}
+      onClick={() => switchTheme(next)}
       aria-label={`Switch to ${next} mode`}
       title={`Switch to ${next} mode`}
       className="group relative isolate grid size-[45px] shrink-0 place-items-center overflow-hidden border border-line bg-background"

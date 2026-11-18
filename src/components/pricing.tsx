@@ -89,7 +89,7 @@ function PlanCard({ plan, billing }: { plan: Plan; billing: Billing }) {
 
   return (
     <article
-      className={`group/card relative flex h-full flex-col overflow-hidden rounded-[12px] border p-5 transition-colors duration-500 md:p-6 ${
+      className={`group/card relative flex h-full flex-col overflow-hidden rounded-[2px] border p-5 transition-colors duration-500 md:p-6 ${
         f ? "border-foreground/40 bg-surface" : "border-line bg-surface hover:border-foreground/30"
       }`}
     >
