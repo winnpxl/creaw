@@ -86,7 +86,6 @@ export function AboutPage() {
               viewport={{ once: true, margin: "0px 0px -10% 0px" }}
               transition={{ duration: 0.9, ease, delay: i * 0.08 }}
             >
-              <p className="mb-3 text-right text-xs text-muted">{String(i + 1).padStart(3, "0")}</p>
               <Portrait name={m.name} tint={m.tint} photo={m.photo} />
               <h3 className="mt-5 text-xl font-medium tracking-tight">{m.name}</h3>
               <p className="mt-1 text-sm text-muted">{m.role}</p>
