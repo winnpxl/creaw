@@ -10,7 +10,7 @@ export const about = {
     { to: 40, suffix: "+", label: "Products shipped across hospitality, education, property and more." },
   ],
   team: [
-    { name: "Olamide Lawal", role: "Project Manager", tint: ["#c8643b", "#ead7bf"] },
+    { name: "Olamide Lawal", role: "Project Manager", tint: ["#c8643b", "#ead7bf"], photo: "/about/olamide-lawal.jpeg" },
     { name: "Ibrahim Habeeb", role: "Software Engineer", tint: ["#4f4fb8", "#cfcaf0"] },
     { name: "Wasiu Ajao", role: "AI Engineer", tint: ["#4d7a3a", "#d6e6b8"] },
     { name: "Oluwasegun Samuel", role: "Product Designer", tint: ["#3f6b8f", "#c9dbe8"], photo: "/about/oluwasegun-samuel.jpeg" },

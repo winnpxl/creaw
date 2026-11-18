@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { ArrowRight, Logo } from "@/components/brand";
+import { Logo } from "@/components/brand";
 import { FadeIn, RevealText } from "@/components/motion";
 import { SweepButton } from "@/components/sweep-button";
 import { GRAIN } from "@/lib/grain";
@@ -32,10 +32,6 @@ function Grain({ className }: { className?: string }) {
   );
 }
 
-function ArrowUpRight({ className }: { className?: string }) {
-  return <ArrowRight className={`-rotate-45 ${className ?? ""}`} />;
-}
-
 export function CtaFooter() {
   return (
     <>
@@ -46,12 +42,8 @@ export function CtaFooter() {
 }
 
 function Cta() {
-  const [email, setEmail] = useState("");
-
   return (
-    <section
-      id="contact"
-      className="relative overflow-hidden bg-accent text-accent-ink"
+    <section className="relative overflow-hidden bg-accent text-accent-ink"
     >
       {/* Soft waves + grain. */}
       <span
@@ -77,46 +69,6 @@ function Cta() {
           className="mt-4 text-[clamp(3rem,8vw,7rem)] font-semibold leading-[0.9] tracking-[-0.06em]"
         />
 
-        <FadeIn delay={0.2} className="mt-16 grid gap-8 md:mt-24 md:grid-cols-3 md:gap-5">
-          <p className="flex gap-3 text-2xl font-medium leading-[1.2] tracking-[-0.04em] text-accent-ink">
-            <ArrowRight className="mt-0.5 size-6 shrink-0" />
-            <span>
-              Tell us what
-              <br />
-              you&apos;re building.
-            </span>
-          </p>
-
-          <form
-            className="md:col-span-2"
-            onSubmit={(e) => {
-              e.preventDefault();
-              compose("New project enquiry", [`Reply to: ${email}`]);
-            }}
-          >
-            <label className="flex items-center gap-4 border-b border-accent-ink/40 pb-3 transition-colors focus-within:border-accent-ink">
-              <span className="sr-only">Your email</span>
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email *"
-                className="min-w-0 flex-1 bg-transparent text-[19px] font-medium tracking-[-0.02em] text-accent-ink outline-none placeholder:text-accent-ink/60"
-              />
-              <button
-                type="submit"
-                aria-label="Send"
-                className="grid size-[34px] shrink-0 place-items-center rounded-full bg-accent-ink text-accent transition-transform duration-500 ease-lens hover:scale-110"
-              >
-                <ArrowUpRight className="size-4" />
-              </button>
-            </label>
-            <p className="mt-6 max-w-[17rem] text-[11px] font-medium leading-snug text-accent-ink/80">
-              We&apos;ll reply within one business day. No newsletters, no spam.
-            </p>
-          </form>
-        </FadeIn>
       </div>
     </section>
   );
@@ -177,49 +129,51 @@ function Footer() {
           </div>
         </FadeIn>
 
-        {/* Row 2: contact form. */}
-        <FadeIn className="mt-24 grid gap-10 md:mt-32 md:grid-cols-3 md:gap-5">
-          <p className="max-w-[13rem] text-[15px] font-medium leading-[1.4] text-white/70">
-            Contact us today for a free consultation and let&apos;s discuss your
-            next project.
-          </p>
-          <form
-            className="flex flex-col gap-8 md:col-span-2"
-            onSubmit={(e) => {
-              e.preventDefault();
-              compose(`Project enquiry from ${form.name}`, [
-                `Name: ${form.name}`,
-                `Email: ${form.email}`,
-                "",
-                form.message,
-              ]);
-            }}
-          >
-            <input required placeholder="Your name *" value={form.name} onChange={set("name")} className={field} />
-            <input required type="email" placeholder="Email *" value={form.email} onChange={set("email")} className={field} />
-            <textarea
-              rows={5}
-              placeholder="Enter your message..."
-              value={form.message}
-              onChange={set("message")}
-              className={`${field} resize-none`}
-            />
-            <SweepButton
-              type="submit"
-              tone="accent"
-              className="mt-2 h-[61px] w-full text-base font-semibold tracking-[-0.02em]"
-            >
-              Get in touch
-            </SweepButton>
-            <p className="-mt-3 text-[13px] font-medium text-white/50">
-              Or email us directly at{" "}
-              <a href={`mailto:${EMAIL}`} className="text-white hover:underline">
-                {EMAIL}
-              </a>
-              .
+        {/* Row 2: contact form. Target of every "Contact" / "#contact" link. */}
+        <div id="contact" className="scroll-mt-28 pt-24 md:pt-32">
+          <FadeIn className="grid gap-10 md:grid-cols-3 md:gap-5">
+            <p className="max-w-[13rem] text-[15px] font-medium leading-[1.4] text-white/70">
+              Contact us today for a free consultation and let&apos;s discuss your
+              next project.
             </p>
-          </form>
-        </FadeIn>
+            <form
+              className="flex flex-col gap-8 md:col-span-2"
+              onSubmit={(e) => {
+                e.preventDefault();
+                compose(`Project enquiry from ${form.name}`, [
+                  `Name: ${form.name}`,
+                  `Email: ${form.email}`,
+                  "",
+                  form.message,
+                ]);
+              }}
+            >
+              <input required placeholder="Your name *" value={form.name} onChange={set("name")} className={field} />
+              <input required type="email" placeholder="Email *" value={form.email} onChange={set("email")} className={field} />
+              <textarea
+                rows={5}
+                placeholder="Enter your message..."
+                value={form.message}
+                onChange={set("message")}
+                className={`${field} resize-none`}
+              />
+              <SweepButton
+                type="submit"
+                tone="accent"
+                className="mt-2 h-[61px] w-full text-base font-semibold tracking-[-0.02em]"
+              >
+                Get in touch
+              </SweepButton>
+              <p className="-mt-3 text-[13px] font-medium text-white/50">
+                Or email us directly at{" "}
+                <a href={`mailto:${EMAIL}`} className="text-white hover:underline">
+                  {EMAIL}
+                </a>
+                .
+              </p>
+            </form>
+          </FadeIn>
+        </div>
 
         {/* Row 3: link columns. */}
         <FadeIn className="mt-24 grid gap-10 md:mt-32 md:grid-cols-3 md:gap-5">
