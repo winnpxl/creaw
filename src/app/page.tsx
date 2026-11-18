@@ -66,7 +66,7 @@ export default function Home() {
               as="h1"
               delay={0.1}
               text="We design and build digital products, as one crew."
-              className="max-w-5xl text-5xl font-medium leading-[0.95] tracking-tight md:text-8xl"
+              className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-tight md:text-8xl"
             />
             <div className="mt-10 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
               <FadeIn delay={0.6}>
