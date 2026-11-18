@@ -12,6 +12,14 @@ export const navLinks = [
   { label: "Contact", href: "#contact" }, // the CTA lives on every page
 ];
 
+export const EMAIL = "hello@crews.studio";
+
+export const socialLinks = [
+  { label: "Instagram", href: "#" },
+  { label: "LinkedIn", href: "#" },
+  { label: "TikTok", href: "#" },
+];
+
 export function resolveHref(href: string, pathname: string) {
   if (pathname === "/" && href.startsWith("/#")) return href.slice(1);
   if (pathname !== "/" && href === "/#top") return "/";

@@ -6,7 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Logo } from "@/components/brand";
 import { SweepButton } from "@/components/sweep-button";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { navLinks, resolveHref } from "@/content/nav";
+import { EMAIL, navLinks, resolveHref, socialLinks } from "@/content/nav";
 
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -120,7 +120,7 @@ export function SiteHeader() {
                 initial={{ clipPath: CLOSED }}
                 animate={{ clipPath: OPEN, transition: { duration: 0.45, ease } }}
                 exit={{ clipPath: CLOSED, transition: { duration: 0.25, ease } }}
-                className="absolute right-0 top-0 z-10 h-[27rem] w-[calc(100vw-2.5rem)] bg-foreground text-background md:w-full"
+                className="absolute right-0 top-0 z-10 flex h-[27rem] w-[calc(100vw-2.5rem)] flex-col bg-foreground text-background md:w-full dark:border dark:border-line dark:bg-raised dark:text-foreground"
               >
                 <ul className="flex flex-col gap-[9px] px-5 pt-[70px]">
                   {navLinks.map((l, i) => (
@@ -147,6 +147,30 @@ export function SiteHeader() {
                     </motion.li>
                   ))}
                 </ul>
+
+                {/* Bottom: email + socials. */}
+                <motion.div
+                  className="mt-auto border-t border-current/15 px-5 pb-5 pt-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, transition: { duration: 0.4, delay: 0.35 } }}
+                  exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                >
+                  <a
+                    href={`mailto:${EMAIL}`}
+                    className="block text-[22px] font-medium tracking-[-0.02em] transition-colors hover:text-accent"
+                  >
+                    {EMAIL}
+                  </a>
+                  <ul className="mt-3 flex gap-4 text-[13px] opacity-60">
+                    {socialLinks.map((l) => (
+                      <li key={l.label}>
+                        <a href={l.href} className="transition-opacity hover:opacity-100 hover:text-accent">
+                          {l.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
               </motion.nav>
             )}
           </AnimatePresence>

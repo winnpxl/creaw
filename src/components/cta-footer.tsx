@@ -6,15 +6,8 @@ import { Logo } from "@/components/brand";
 import { FadeIn, RevealText } from "@/components/motion";
 import { SweepButton } from "@/components/sweep-button";
 import { GRAIN } from "@/lib/grain";
-import { navLinks, resolveHref } from "@/content/nav";
+import { EMAIL, navLinks, resolveHref, socialLinks as social } from "@/content/nav";
 
-const EMAIL = "hello@crews.studio";
-
-const social = [
-  { label: "Instagram", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "Dribbble", href: "#" },
-];
 
 /** Opens the visitor's mail app with the form contents (no backend yet). */
 function compose(subject: string, lines: string[]) {
