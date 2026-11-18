@@ -23,7 +23,7 @@ function Portrait({ name, tint, photo }: { name: string; tint: [string, string];
       <div className="absolute inset-0 transition-transform duration-700 ease-lens group-hover:scale-[1.04]">
         {photo ? (
           // eslint-disable-next-line @next/next/no-img-element
-          <img src={photo} alt={name} className="size-full object-cover" />
+          <img src={photo} alt={name} className="size-full object-cover object-top grayscale transition-[filter] duration-700 group-hover:grayscale-0" />
         ) : (
           <div
             className="grid size-full place-items-center grayscale transition-[filter] duration-700 group-hover:grayscale-0"

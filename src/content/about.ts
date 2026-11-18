@@ -13,7 +13,7 @@ export const about = {
     { name: "Olamide Lawal", role: "Project Manager", tint: ["#c8643b", "#ead7bf"] },
     { name: "Ibrahim Habeeb", role: "Software Engineer", tint: ["#4f4fb8", "#cfcaf0"] },
     { name: "Wasiu Ajao", role: "AI Engineer", tint: ["#4d7a3a", "#d6e6b8"] },
-    { name: "Oluwasegun Samuel", role: "Product Design", tint: ["#3f6b8f", "#c9dbe8"] },
+    { name: "Oluwasegun Samuel", role: "Product Designer", tint: ["#3f6b8f", "#c9dbe8"], photo: "/about/oluwasegun-samuel.jpeg" },
   ] as { name: string; role: string; tint: [string, string]; photo?: string }[],
   quote: {
     text: "Design, code and delivery sit at the same table. Nothing gets lost between teams, because there’s only one team.",
