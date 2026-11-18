@@ -51,7 +51,7 @@ export function ServicesFan({ services }: { services: Service[] }) {
             onPointerEnter={() => canFan && setActive(i)}
             onFocusCapture={() => canFan && setActive(i)}
             className={cx(
-              "relative overflow-hidden rounded-[12px] border border-line bg-surface",
+              "relative overflow-hidden rounded-[2px] border border-line bg-surface",
               "transition-[flex,height] duration-700 ease-lens md:h-auto",
               on ? "h-[22rem] md:flex-[3.4]" : "h-[4.25rem] md:flex-1",
             )}
