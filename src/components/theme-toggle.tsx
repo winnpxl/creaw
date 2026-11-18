@@ -1,6 +1,6 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
+import { AnimatePresence, motion } from "motion/react";
 import { useSyncExternalStore } from "react";
 
 type Theme = "light" | "dark";
@@ -21,10 +21,14 @@ export function setTheme(t: Theme) {
   } catch {}
 }
 
-/** Square sun/moon toggle in the header's button language (sweep on hover). */
+/**
+ * Square sun/moon toggle using the Kubai icons (brand green, public/icons/theme).
+ * Sweep fill is the text color, not green, so the green icon stays visible.
+ */
 export function ThemeToggle() {
   const theme = useSyncExternalStore(subscribe, getTheme, () => "light" as Theme);
   const next = theme === "dark" ? "light" : "dark";
+  const icon = theme === "dark" ? "sun" : "moon";
 
   return (
     <button
@@ -32,17 +36,27 @@ export function ThemeToggle() {
       onClick={() => setTheme(next)}
       aria-label={`Switch to ${next} mode`}
       title={`Switch to ${next} mode`}
-      className="group relative isolate grid size-[45px] shrink-0 place-items-center overflow-hidden border border-line bg-background text-foreground transition-colors duration-150 hover:text-accent-ink focus-visible:text-accent-ink"
+      className="group relative isolate grid size-[45px] shrink-0 place-items-center overflow-hidden border border-line bg-background"
     >
       <span
         aria-hidden
-        className="absolute inset-0 -z-10 origin-left scale-x-0 bg-accent transition-transform duration-200 ease-out group-hover:scale-x-100 group-hover:duration-300 group-focus-visible:scale-x-100"
+        className="absolute inset-0 -z-10 origin-left scale-x-0 bg-foreground transition-transform duration-200 ease-out group-hover:scale-x-100 group-hover:duration-300 group-focus-visible:scale-x-100"
       />
-      {theme === "dark" ? (
-        <Sun className="size-[18px]" strokeWidth={1.6} />
-      ) : (
-        <Moon className="size-[18px]" strokeWidth={1.6} />
-      )}
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.img
+          key={icon}
+          src={`/icons/theme/${icon}.svg`}
+          alt=""
+          width={30}
+          height={30}
+          draggable={false}
+          className="size-[30px] select-none transition-transform duration-500 ease-lens group-hover:rotate-[20deg] group-hover:scale-110"
+          initial={{ opacity: 0, rotate: -90, scale: 0.4 }}
+          animate={{ opacity: 1, rotate: 0, scale: 1 }}
+          exit={{ opacity: 0, rotate: 90, scale: 0.4 }}
+          transition={{ type: "spring", stiffness: 380, damping: 22 }}
+        />
+      </AnimatePresence>
     </button>
   );
 }

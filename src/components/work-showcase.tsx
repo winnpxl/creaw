@@ -15,7 +15,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
  * Tabbed project showcase. A pill slides to the active tab, the panel below
  * moves like a carousel, and it auto-advances every 6s while on screen.
  * Hovering anywhere in the showcase pauses rotation. Tabs use the site's
- * button language: square, with the green sweep on hover.
+ * button language: square, with a neutral grey sweep on hover.
  */
 export function WorkShowcase() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -88,7 +88,7 @@ export function WorkShowcase() {
                 aria-controls={`work-panel-${i}`}
                 onClick={() => pick(i)}
                 className={`group relative isolate flex h-14 min-w-36 flex-1 items-center justify-center gap-2.5 overflow-hidden text-lg transition-colors duration-200 ${
-                  on ? "text-foreground" : "text-muted hover:text-accent-ink"
+                  on ? "text-foreground" : "text-muted hover:text-foreground"
                 }`}
               >
                 {on && (
@@ -99,11 +99,11 @@ export function WorkShowcase() {
                     transition={{ duration: 0.5, ease }}
                   />
                 )}
-                {/* Sweep fill on hover (inactive tabs), same as SweepButton. */}
+                {/* Sweep fill on hover (inactive tabs): neutral grey, same motion as SweepButton. */}
                 {!on && (
                   <span
                     aria-hidden
-                    className="absolute inset-0 -z-10 origin-left scale-x-0 bg-accent transition-transform duration-200 ease-out group-hover:scale-x-100 group-hover:duration-300"
+                    className="absolute inset-0 -z-10 origin-left scale-x-0 bg-raised transition-transform duration-200 ease-out group-hover:scale-x-100 group-hover:duration-300"
                   />
                 )}
                 <Icon className="size-5" strokeWidth={1.6} />
