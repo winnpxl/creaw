@@ -141,7 +141,7 @@ function Footer() {
   return (
     <footer
       data-header-tone="dark"
-      className="relative overflow-hidden bg-[#0f0f0f] text-white"
+      className="relative overflow-hidden bg-[#0f0f0f] text-white dark:border-t dark:border-line dark:bg-surface"
     >
       <span
         aria-hidden

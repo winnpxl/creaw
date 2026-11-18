@@ -74,7 +74,7 @@ export default function Home() {
                 </p>
               </FadeIn>
               <FadeIn delay={0.75}>
-                <a href="#work" className="group inline-flex items-center gap-1 text-sm underline underline-offset-4 transition-colors hover:text-accent-ink">
+                <a href="#work" className="group inline-flex items-center gap-1 text-sm underline underline-offset-4 transition-colors hover:text-accent-text">
                   See selected work
                   <ArrowRight className="size-4 rotate-90 transition-transform duration-500 group-hover:translate-y-0.5" />
                 </a>

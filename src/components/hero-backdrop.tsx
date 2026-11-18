@@ -79,20 +79,30 @@ export function HeroBackdrop() {
     if (!el) return;
     let raf = 0;
     let lastH = 0;
+    let lastColor = "";
     const draw = () => {
       const h = Math.round(el.getBoundingClientRect().height);
-      if (!h || Math.abs(h - lastH) < 24) return;
+      // Dot color follows the theme (--terrain token).
+      const color =
+        getComputedStyle(document.documentElement).getPropertyValue("--terrain").trim() ||
+        "rgb(32 32 32 / 0.16)";
+      if (!h || (Math.abs(h - lastH) < 24 && color === lastColor)) return;
       lastH = h;
-      const url = renderTile(h, "rgba(32, 32, 32, 0.16)");
+      lastColor = color;
+      const url = renderTile(h, color);
       if (url) setTile({ url, h });
     };
-    const ro = new ResizeObserver(() => {
+    const schedule = () => {
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(draw);
-    });
+    };
+    const ro = new ResizeObserver(schedule);
     ro.observe(el);
+    const mo = new MutationObserver(schedule);
+    mo.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
     return () => {
       ro.disconnect();
+      mo.disconnect();
       cancelAnimationFrame(raf);
     };
   }, []);

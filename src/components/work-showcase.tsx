@@ -95,7 +95,7 @@ export function WorkShowcase() {
                   <motion.span
                     layoutId="work-tab-pill"
                     aria-hidden
-                    className="absolute inset-0 -z-10 border border-line bg-background"
+                    className="absolute inset-0 -z-10 border border-line bg-raised"
                     transition={{ duration: 0.5, ease }}
                   />
                 )}
@@ -181,7 +181,7 @@ function Panel({ p, i, on }: { p: ShowcaseProject; i: number; on: boolean }) {
         ) : (
           // Placeholder "screen" until the product shot lands.
           <div className="absolute inset-x-[8%] bottom-0 top-[12%] grid place-items-center rounded-t-[14px] border border-white/60 bg-white/75 backdrop-blur-sm">
-            <span className="flex items-center gap-2 text-xl font-medium text-foreground/70">
+            <span className="flex items-center gap-2 text-xl font-medium text-[#202020]/70">
               <p.icon className="size-6" strokeWidth={1.6} />
               {p.name}
             </span>

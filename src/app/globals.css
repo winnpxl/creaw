@@ -1,16 +1,52 @@
 @import "tailwindcss";
 @import "lenis/dist/lenis.css";
 
-/* Baseline tokens — expect these to change once references are in. */
+/* `dark:` utilities follow the active theme (data-theme on <html>). */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/* Light theme (default). */
 :root {
   --background: #f2f0ee;
   --foreground: #202020;
   --muted: #6b6862;
   --surface: #ebe8e2;
+  --raised: #f2f0ee; /* active pills/tabs sitting on a surface */
   --line: #d9d5cd;
   /* Wise Bright Green + Forest Green. Text on accent uses accent-ink, never white. */
   --accent: #9fe870;
   --accent-ink: #163300;
+  /* Accent used as text/hover on the page background. */
+  --accent-text: #163300;
+  /* Dithered hero terrain dots. */
+  --terrain: rgb(32 32 32 / 0.16);
+}
+
+/* Dark theme: cool near-black with soft off-white text. */
+:root[data-theme="dark"] {
+  --background: #111113;
+  --foreground: #f2f1ee;
+  --muted: #9c9aa4;
+  --surface: #1a1a1e;
+  --raised: #26262b;
+  --line: #2f2f35;
+  --accent-text: #9fe870;
+  --terrain: rgb(242 241 238 / 0.11);
+  color-scheme: dark;
+}
+
+/* No-JS fallback: follow the OS unless the visitor picked light. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background: #111113;
+    --foreground: #f2f1ee;
+    --muted: #9c9aa4;
+    --surface: #1a1a1e;
+    --raised: #26262b;
+    --line: #2f2f35;
+    --accent-text: #9fe870;
+    --terrain: rgb(242 241 238 / 0.11);
+    color-scheme: dark;
+  }
 }
 
 @theme inline {
@@ -18,24 +54,27 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-surface: var(--surface);
+  --color-raised: var(--raised);
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-accent-ink: var(--accent-ink);
+  --color-accent-text: var(--accent-text);
   --font-sans: var(--font-geist-sans);
   --ease-lens: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-
 body {
   background: var(--background);
   color: var(--foreground);
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
 }
 
 ::selection {
   background: var(--accent);
   color: var(--accent-ink);
 }
-
 
 @keyframes terrain-drift {
   to {

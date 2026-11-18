@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Logo } from "@/components/brand";
 import { SweepButton } from "@/components/sweep-button";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 const links = [
   { label: "Home", href: "#top" },
@@ -75,10 +76,12 @@ export function SiteHeader() {
           <Logo className="h-[18px]" />
         </a>
 
-        <div
-          ref={groupRef}
-          className="pointer-events-auto relative flex md:w-60"
-        >
+        <div className="pointer-events-auto flex items-start gap-2">
+          <ThemeToggle />
+          <div
+            ref={groupRef}
+            className="relative flex md:w-60"
+          >
           <SweepButton
             href="#contact"
             className="hidden! h-[45px] flex-1 text-[15px] font-medium uppercase tracking-wide md:inline-flex!"
@@ -151,6 +154,7 @@ export function SiteHeader() {
               </motion.nav>
             )}
           </AnimatePresence>
+        </div>
         </div>
       </div>
     </header>
