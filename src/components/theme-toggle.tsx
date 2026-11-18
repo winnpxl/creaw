@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useSyncExternalStore } from "react";
+import { useEffect, useSyncExternalStore } from "react";
 
 type Theme = "light" | "dark";
 
@@ -13,6 +13,14 @@ function subscribe(cb: () => void) {
 }
 const getTheme = (): Theme =>
   document.documentElement.dataset.theme === "dark" ? "dark" : "light";
+
+/** Point the favicon at the variant for the active site theme. */
+function syncFavicon(t: Theme) {
+  const href = `/brand/favicon-${t}.svg`;
+  document.querySelectorAll<HTMLLinkElement>('link[rel~="icon"]').forEach((link) => {
+    if (link.getAttribute("href") !== href) link.setAttribute("href", href);
+  });
+}
 
 export function setTheme(t: Theme) {
   document.documentElement.dataset.theme = t;
@@ -46,6 +54,15 @@ export function ThemeToggle() {
   const theme = useSyncExternalStore(subscribe, getTheme, () => "light" as Theme);
   const next = theme === "dark" ? "light" : "dark";
   const icon = theme === "dark" ? "sun" : "moon";
+
+  // Runs after hydration (and on every theme change), so React never sees a
+  // mismatch. Next can stream its icon <link> in later, so keep watching <head>.
+  useEffect(() => {
+    syncFavicon(theme);
+    const mo = new MutationObserver(() => syncFavicon(theme));
+    mo.observe(document.head, { childList: true, subtree: true, attributes: true, attributeFilter: ["href"] });
+    return () => mo.disconnect();
+  }, [theme]);
 
   return (
     <button

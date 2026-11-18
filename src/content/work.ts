@@ -29,6 +29,16 @@ export type ShowcaseProject = {
   image?: string;
   /** Placeholder backdrop colors until real images land. */
   colors: [string, string];
+  /** Work page (/work) details. */
+  year: string;
+  outcome: string;
+  tags: string[];
+};
+
+export const workPage = {
+  title: "Work.",
+  range: "2024–26©",
+  searchPlaceholder: "Search projects…",
 };
 
 export const workHeading = "Products we took charge of, completely";
@@ -46,6 +56,9 @@ export const showcase: ShowcaseProject[] = [
       { icon: Store, text: "One booking flow across nine venues" },
     ],
     colors: ["#c8643b", "#ead7bf"],
+    year: "2026",
+    outcome: "Cut no-shows by 35% – one booking flow across nine venues",
+    tags: ["Product Design", "Web Development", "Project Management"],
   },
   {
     name: "Marrow",
@@ -58,6 +71,9 @@ export const showcase: ShowcaseProject[] = [
       { icon: WifiOff, text: "Works offline on the commute" },
     ],
     colors: ["#4f4fb8", "#cfcaf0"],
+    year: "2025",
+    outcome: "A 23-day average study streak – offline-first on iOS and Android",
+    tags: ["Product Design", "App Development"],
   },
   {
     name: "Fieldnote",
@@ -70,6 +86,9 @@ export const showcase: ShowcaseProject[] = [
       { icon: Signal, text: "Syncs reliably on weak rural signal" },
     ],
     colors: ["#4d7a3a", "#d6e6b8"],
+    year: "2025",
+    outcome: "Field reports in under two minutes – forecasts across 1,200 farms",
+    tags: ["App Development", "Web Development"],
   },
   {
     name: "Plinth",
@@ -82,5 +101,8 @@ export const showcase: ShowcaseProject[] = [
       { icon: Palette, text: "One brand system across 40 buildings" },
     ],
     colors: ["#3f6b8f", "#c9dbe8"],
+    year: "2024",
+    outcome: "Repairs resolved twice as fast – one brand system across 40 buildings",
+    tags: ["Product Design", "Web Development", "Project Management"],
   },
 ];

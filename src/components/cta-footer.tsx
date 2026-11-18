@@ -1,21 +1,14 @@
 "use client";
 
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { ArrowRight, Logo } from "@/components/brand";
 import { FadeIn, RevealText } from "@/components/motion";
 import { SweepButton } from "@/components/sweep-button";
 import { GRAIN } from "@/lib/grain";
+import { navLinks, resolveHref } from "@/content/nav";
 
 const EMAIL = "hello@crews.studio";
-
-const nav = [
-  { label: "Home", href: "#top" },
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
-];
 
 const social = [
   { label: "Instagram", href: "#" },
@@ -130,6 +123,7 @@ function Cta() {
 }
 
 function Footer() {
+  const pathname = usePathname();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const set =
     (k: keyof typeof form) =>
@@ -234,10 +228,10 @@ function Footer() {
             <nav aria-label="Footer">
               <p className="text-[13px] font-medium text-white/60">Navigation</p>
               <ul className="mt-5 flex flex-col gap-2">
-                {nav.map((l) => (
+                {navLinks.map((l) => (
                   <li key={l.label}>
                     <a
-                      href={l.href}
+                      href={resolveHref(l.href, pathname)}
                       className="inline-block text-[17px] font-medium tracking-[-0.03em] transition-[color,transform] duration-300 ease-lens hover:translate-x-1 hover:text-accent"
                     >
                       {l.label}

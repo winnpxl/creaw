@@ -55,7 +55,7 @@ export function WorkShowcase() {
         />
         <FadeIn delay={0.2}>
           <a
-            href="#work"
+            href="/work"
             className="group inline-flex items-center gap-2 border-b border-foreground/30 pb-1.5 text-lg transition-colors hover:border-foreground"
           >
             View all work

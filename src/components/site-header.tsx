@@ -1,19 +1,13 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { ArrowRight, Logo } from "@/components/brand";
 import { SweepButton } from "@/components/sweep-button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { navLinks, resolveHref } from "@/content/nav";
 
-const links = [
-  { label: "Home", href: "#top" },
-  { label: "Services", href: "#services" },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "Pricing", href: "#pricing" },
-  { label: "Contact", href: "#contact" },
-];
 
 const ease = [0.22, 1, 0.36, 1] as const;
 // The panel grows out of the 45×45 menu button (top-right corner).
@@ -25,6 +19,7 @@ const OPEN = "inset(0px 0px 0px 0px)";
  * Uses the same centered container and gutters as the page body.
  */
 export function SiteHeader() {
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [onDark, setOnDark] = useState(false);
   const groupRef = useRef<HTMLDivElement>(null);
@@ -70,8 +65,8 @@ export function SiteHeader() {
     <header className="pointer-events-none fixed inset-x-0 top-0 z-50">
       <div className="mx-auto flex max-w-7xl items-start justify-between px-5 pt-[25px] md:px-10">
         <a
-          href="#top"
-          aria-label="Crews, back to top"
+          href={resolveHref("/#top", pathname)}
+          aria-label="Crews, home"
           className={`pointer-events-auto flex h-[45px] items-center transition-colors duration-300 ${onDark ? "text-white" : "text-foreground"}`}
         >
           <Logo className="h-[18px]" />
@@ -128,7 +123,7 @@ export function SiteHeader() {
                 className="absolute right-0 top-0 z-10 h-[27rem] w-[calc(100vw-2.5rem)] bg-foreground text-background md:w-full"
               >
                 <ul className="flex flex-col gap-[9px] px-5 pt-[70px]">
-                  {links.map((l, i) => (
+                  {navLinks.map((l, i) => (
                     <motion.li
                       key={l.href}
                       initial={{ opacity: 0, y: 6 }}
@@ -140,7 +135,7 @@ export function SiteHeader() {
                       exit={{ opacity: 0, transition: { duration: 0.1 } }}
                     >
                       <a
-                        href={l.href}
+                        href={resolveHref(l.href, pathname)}
                         onClick={() => setOpen(false)}
                         className="group flex items-center text-[15px] font-medium uppercase leading-[21px] tracking-wide"
                       >

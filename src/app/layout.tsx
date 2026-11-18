@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: "Crews — Design & Development",
   description:
     "Crews is a design and development studio building brands, products and websites.",
+  // OS-adaptive favicon; ThemeToggle then points it at the light/dark variant
+  // matching the site theme (see syncFavicon).
+  icons: { icon: [{ url: "/brand/favicon.svg", type: "image/svg+xml" }] },
 };
 
 // Runs before paint: apply the saved theme, else the OS preference. No flash.
