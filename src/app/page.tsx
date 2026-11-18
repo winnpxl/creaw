@@ -2,8 +2,6 @@
 import {
   Counter,
   FadeIn,
-  Marquee,
-  ParallaxMedia,
   RevealText,
 } from "@/components/motion";
 import { ArrowRight } from "@/components/brand";
@@ -83,15 +81,6 @@ export default function Home() {
               </FadeIn>
             </div>
           </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-5 md:px-10">
-          <ParallaxMedia className="aspect-[16/9] md:aspect-[21/9]" />
-        </section>
-
-        {/* Marquee */}
-        <section className="py-20 md:py-28">
-          <Marquee items={["Brand", "Product", "Web", "Mobile", "Motion"]} />
         </section>
 
         {/* Services */}

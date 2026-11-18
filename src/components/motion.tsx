@@ -6,8 +6,6 @@ import {
   motion,
   MotionConfig,
   useInView,
-  useScroll,
-  useTransform,
 } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 
@@ -92,32 +90,6 @@ export function FadeIn({
   );
 }
 
-/** Media frame that un-crops as it enters and drifts slightly while scrolling. */
-export function ParallaxMedia({ className }: { className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
-
-  return (
-    <motion.div
-      ref={ref}
-      className={`overflow-hidden rounded-2xl bg-line ${className ?? ""}`}
-      initial={{ clipPath: "inset(12% 6% 12% 6% round 24px)" }}
-      whileInView={{ clipPath: "inset(0% 0% 0% 0% round 16px)" }}
-      viewport={{ once: true, margin: "0px 0px -10% 0px" }}
-      transition={{ duration: 1.2, ease }}
-    >
-      <motion.div
-        style={{ y }}
-        className="h-[120%] w-full -translate-y-[10%] bg-gradient-to-br from-foreground/5 via-foreground/15 to-foreground/5 transition-transform duration-700 ease-out group-hover:scale-105"
-      />
-    </motion.div>
-  );
-}
-
 /** Counts up from 0 when it comes into view. */
 export function Counter({
   to,
@@ -147,29 +119,5 @@ export function Counter({
       {value}
       {suffix}
     </span>
-  );
-}
-
-/** Endless horizontal ticker. */
-export function Marquee({ items }: { items: string[] }) {
-  const row = [...items, ...items];
-  return (
-    <div className="flex overflow-hidden whitespace-nowrap">
-      <motion.div
-        className="flex shrink-0"
-        animate={{ x: ["0%", "-50%"] }}
-        transition={{ duration: 28, ease: "linear", repeat: Infinity }}
-      >
-        {row.map((item, i) => (
-          <span
-            key={i}
-            className="flex items-center gap-8 pr-8 text-5xl font-medium tracking-tight md:text-7xl"
-          >
-            {item}
-            <span className="text-accent-ink">✳</span>
-          </span>
-        ))}
-      </motion.div>
-    </div>
   );
 }
