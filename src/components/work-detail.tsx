@@ -1,8 +1,10 @@
 "use client";
 
 import { ArrowLeft, ArrowRight, ArrowUpRight, Quote } from "lucide-react";
+import { useLenis } from "lenis/react";
 import { motion } from "motion/react";
 import Link from "next/link";
+import { useEffect } from "react";
 import { Counter, FadeIn, RevealText } from "@/components/motion";
 import { SweepButton } from "@/components/sweep-button";
 import { caseStudyHref, showcase, type ShowcaseProject } from "@/content/work";
@@ -77,6 +79,14 @@ export function WorkDetail({ slug }: { slug: string }) {
   const p = showcase[index];
   const next = showcase[(index + 1) % showcase.length];
   const cs = p.caseStudy;
+
+  // Lenis keeps easing toward its old scroll target after a client navigation,
+  // so jump it (and the window) to the top whenever a new case study opens.
+  const lenis = useLenis();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    lenis?.scrollTo(0, { immediate: true, force: true });
+  }, [slug, lenis]);
 
   const meta: { label: string; value: React.ReactNode }[] = [
     { label: "Client", value: cs.client },
