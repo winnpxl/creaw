@@ -4,7 +4,8 @@ import { ArrowRight, Search } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { FadeIn, RevealText } from "@/components/motion";
-import { showcase, workPage, type ShowcaseProject } from "@/content/work";
+import Link from "next/link";
+import { caseStudyHref, showcase, workPage, type ShowcaseProject } from "@/content/work";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const ALL = "All";
@@ -70,7 +71,7 @@ function ProjectRow({ p }: { p: ShowcaseProject }) {
       transition={{ duration: 0.6, ease }}
       className="border-b border-line py-12 md:py-16"
     >
-      <a href={p.href ?? "#contact"} className="group grid gap-6 md:grid-cols-12 md:gap-8">
+      <Link href={caseStudyHref(p)} prefetch className="group grid gap-6 md:grid-cols-12 md:gap-8">
         {/* Year */}
         <p className="text-sm text-muted md:col-span-3">{p.year}</p>
 
@@ -130,7 +131,7 @@ function ProjectRow({ p }: { p: ShowcaseProject }) {
             ))}
           </ul>
         </div>
-      </a>
+      </Link>
     </motion.li>
   );
 }

@@ -5,7 +5,7 @@ import { motion, useInView } from "motion/react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { FadeIn, RevealText } from "@/components/motion";
 import { SweepButton } from "@/components/sweep-button";
-import { showcase, workHeading, type ShowcaseProject } from "@/content/work";
+import { caseStudyHref, showcase, workHeading, type ShowcaseProject } from "@/content/work";
 
 const ROTATE_MS = 6000;
 const GAP = 60; // px between carousel slides
@@ -159,7 +159,7 @@ function Panel({ p, i, on }: { p: ShowcaseProject; i: number; on: boolean }) {
           ))}
         </ul>
         <SweepButton
-          href={p.href ?? "#contact"}
+          href={caseStudyHref(p)}
           tone="dark"
           className="mt-10 h-12 w-full text-base font-medium"
           tabIndex={on ? 0 : -1}
